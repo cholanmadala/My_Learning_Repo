@@ -1,0 +1,57 @@
+<html>
+<head>
+<style type="text/css">
+	html, body{
+		height: 100%;
+		overflow: hidden;
+	}
+	#collectors {
+	  border:1px solid red;
+	  padding: 1%;
+	  height:75%;
+	}
+	#resultSection{
+		height: 15%;
+		border: 1px solid green;
+		padding: 1%;
+	}
+</style>
+</head>
+<body>
+	<div id='collectors'>
+	<input id="dataInput" type="text" placeholder="Input some numbers separated by commas" />
+	<button onclick="insertionSort()">Insertion Sort</button>
+	</div>
+
+	<div id='resultSection'>
+		Result : <span id="resultId"></span>
+	</div>
+
+</body>
+<script type="text/javascript">
+	function dataPrep(x){
+		var data = x;
+		var x = data.split(',');
+		var propData=[];
+		for(var i=0;i<x.length;i++){
+				propData.push(parseInt(x[i]));
+			}
+		return propData;
+	}
+
+	function insertionSort(){
+		var x = dataPrep(document.getElementById("dataInput").value);
+		for(var i=1;i<x.length;i++){
+			var curr = x[i];
+			var temp = i;
+				while(temp > 0 && x[temp-1]>=curr){
+				var tempVal = x[temp-1];
+				x[temp] = tempVal;
+				--temp;
+				}
+				x[temp] = curr;
+		}
+		document.getElementById("resultId").innerHTML = x;
+	}
+</script>
+</html>
